@@ -2,7 +2,7 @@
 
 namespace View;
 
-class Activation
+class Grade
 {
     public function showForm($name, $id, $action)
     {
