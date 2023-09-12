@@ -25,22 +25,6 @@ class Students
     {
         $this->view->showStudentsAndGrades($this->model->fetchStudentsAndGrades());
     }
-
-    public function process($data)
-    {
-        // https://www.php.net/manual/en/function.htmlspecialchars
-        // https://www.php.net/manual/en/function.strip-tags
-        $data['name'] = htmlspecialchars(strip_tags($data['name']));
-        $data['surname'] = htmlspecialchars(strip_tags($data['surname']));
-        $data['uinac'] = htmlspecialchars(strip_tags($data['surname']));
-
-        
-        if ($this->model->addStudent($data)) {
-            $this->messages[] = "Your account has been created successfully!";
-        } else {
-            $this->messages[] = "Your account has NOT been created successfully!";
-        }
-    }
 }
 
 $students = new \Controller\Students();

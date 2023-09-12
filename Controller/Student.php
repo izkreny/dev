@@ -28,6 +28,18 @@ class Student
 
     public function process($data)
     {
+        // https://www.php.net/manual/en/function.htmlspecialchars
+        // https://www.php.net/manual/en/function.strip-tags
+        $data['name'] = htmlspecialchars(strip_tags($data['name']));
+        $data['surname'] = htmlspecialchars(strip_tags($data['surname']));
+        $data['uinac'] = htmlspecialchars(strip_tags($data['uinac']));
+
+        
+        if ($this->model->addStudent($data)) {
+            $this->messages[] = "Student has been added successfully.";
+        } else {
+            $this->messages[] = "Student has NOT been added successfully!";
+        }
     }
 }
 
