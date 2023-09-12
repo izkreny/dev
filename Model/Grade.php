@@ -15,8 +15,22 @@ class Grade
         $this->conn = $db->getConnection();
     }
 
-    public function updateGrade($data)
+    public function updateGrade($final_grade, $fk_student_id)
     {
+        $query = "UPDATE {$this->table}"
+            . " SET"
+            . " final_grade = :final_grade"
+            . " WHERE" 
+            . " fk_student_id = :fk_student_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":final_grade", $final_grade);
+        $stmt->bindParam(":fk_student_id", $fk_student_id);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function createGrade($data)
@@ -33,3 +47,4 @@ class Grade
         }
     }
 }
+

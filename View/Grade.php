@@ -4,15 +4,16 @@ namespace View;
 
 class Grade
 {
-    public function showForm($name, $id, $action)
+    public function showForm($data)
     {
         echo "
             <form action='' method='post'>
-                Final grade for {$name}: <input type='number' name='final_grade' required><br>
-                <input type='hidden' name='fk_student_id' value='{$id}'>
-                <input type='hidden' name='action' value='{$action}'>
+                Final grade for {$data['name']}: <input type='number' name='final_grade' required><br>
+                <input type='hidden' name='fk_student_id' value='{$data['id']}'>
+                <input type='hidden' name='action' value='{$data['action']}'>
                 <input type='submit' value='SAVE'>
             </form>
+            <a href='/'>Povratak</a> 
         ";
     }
 
