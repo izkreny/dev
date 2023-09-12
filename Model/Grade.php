@@ -21,12 +21,12 @@ class Grade
 
     public function createGrade($data)
     {
-        $querry = "INSERT INTO {$this->table}"
+        $query = "INSERT INTO {$this->table}"
             . "(final_grade, fk_student_id)"
             . "VALUES"
             . "(:final_grade, :fk_student_id)";
 
-        if ($this->conn->prepare($querry)->execute($data)) {
+        if ($this->conn->prepare($query)->execute($data)) {
             return true;
         } else {
             return false;
