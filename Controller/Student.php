@@ -48,5 +48,6 @@ $student = new \Controller\Student();
 if (!empty($_POST)) {
     $student->process($_POST);
 }
-$student->showMessages();
 $student->showForm();
+$student->showMessages();
+

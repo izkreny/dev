@@ -6,14 +6,15 @@ class Grade
 {
     public function showForm($data)
     {
+        echo "<h1>Change or Add Grade</h1>";
         echo "
             <form action='' method='post'>
-                Final grade for {$data['name']}: <input type='number' name='final_grade' required><br>
+                Final grade for <b>{$data['name']}</b>: <input type='number' name='final_grade' required><br>
                 <input type='hidden' name='fk_student_id' value='{$data['id']}'>
                 <input type='hidden' name='action' value='{$data['action']}'>
                 <input type='submit' value='SAVE'>
             </form>
-            <a href='/'>Povratak</a> 
+            <a href='/'>Back to Students & Grades</a> 
         ";
     }
 

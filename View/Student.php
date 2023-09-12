@@ -6,6 +6,7 @@ class Student
 {
     public function showForm()
     {
+        echo "<h1>Add Student</h1>";
         echo "
             <form action='' method='post'>
                 Name: <input type='text' name='name' required><br>
@@ -13,7 +14,7 @@ class Student
                 UINAC: <input type='text' name='uinac' required><br>
                 <input type='submit' value='ADD STUDENT'>
             </form>
-            <a href='/'>Povratak</a> 
+            <a href='/'>Back to Students & Grades</a> 
         ";
     }
 

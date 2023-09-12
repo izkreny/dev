@@ -6,6 +6,7 @@ class Students
 {
     public function showStudentsAndGrades($students)
     {
+        echo "<h1>Students & Grades 🗿🍇</h1>";
         echo "
             <table border='1'>
                 <tr>
