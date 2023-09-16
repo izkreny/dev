@@ -17,10 +17,10 @@ class Student
 
     public function fetchStudentsAndGrades()
     {
-        $query = "SELECT students.id, students.name, students.surname, students.uinac, grades.final_grade "
-            . "FROM students "
-            . "LEFT JOIN grades "
-            . "ON students.id=grades.fk_student_id";
+        $query = "SELECT students.id, students.name, students.surname, students.uinac, grades.final_grade"
+            . " FROM students"
+            . " LEFT JOIN grades"
+            . " ON students.id=grades.fk_student_id";
 
         return $this->conn->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }

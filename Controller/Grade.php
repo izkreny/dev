@@ -36,7 +36,8 @@ class Grade
                 $this->messages[] = "Grade NOT added successfully!";
             };
         } elseif ($data['action'] === 'update') {
-            if ($this->model->updateGrade($data['final_grade'], $data['fk_student_id'])) {
+            unset($data['action']);
+            if ($this->model->updateGrade($data)) {
                 $this->messages[] = "Grade updated successfully.";
             } else {
                 $this->messages[] = "Grade NOT updated successfully!";

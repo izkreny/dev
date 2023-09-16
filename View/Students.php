@@ -18,7 +18,7 @@ class Students
 
         foreach ($students as $student) {
             echo "<tr>";
-            echo "<td>{$student['name']} {$student['surname']} ({$student['uinac']})</td>";
+            echo "<td>#{$student['id']} {$student['name']} {$student['surname']} ({$student['uinac']})</td>";
             if ($student['final_grade'] === null) {
                 echo "<td colspan='2'><a href='/grade?action=create&name={$student['name']}&id={$student['id']}'>ADD GRADE</a></td>";
             } else {
