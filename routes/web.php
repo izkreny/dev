@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NumberController;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::get('/', function () {
 
 // Route::get('/add/{a}/{b}', [NumberController::class, 'add']);
 
-// Route for getting data via POST method
+/* Route for getting data via POST method
 Route::post('/add', [NumberController::class, 'add']);
 
 // Route for showing sum form
@@ -28,3 +29,13 @@ Route::get('/form', function ()
     {
         return view('sumForm');
     });
+*/
+
+// Form
+Route::get('/form', [PersonController::class, 'form']);
+
+// Store
+Route::post('/store', [PersonController::class, 'store']);
+
+// Show
+Route::get('/show', [PersonController::class, 'show']);
