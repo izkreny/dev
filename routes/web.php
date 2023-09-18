@@ -18,4 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('add/{a}/{b}', [NumberController::class, 'add']);
+// Route::get('/add/{a}/{b}', [NumberController::class, 'add']);
+
+// Route for getting data via POST method
+Route::post('/add', [NumberController::class, 'add']);
+
+// Route for showing sum form
+Route::get('/form', function ()
+    {
+        return view('sumForm');
+    });
