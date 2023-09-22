@@ -13,18 +13,32 @@
             <th>#</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>Action</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>         
         @foreach ($members as $member)
         <tr>
             <td>{{ $member->id }}.</td>
             <td> {{$member->name}}</td>
             <td>{{$member->surname}}</td>
-            <td><a href="{{ route('members.edit', $member->id) }}">EDIT</a></td>
+            <td>
+                <form action="{{ route('members.edit', $member->id) }}" method="GET">
+                    @csrf
+                    <button type="submit">EDIT</button>
+                </form>
+            </td>
+            <td>
+                <!-- TODO: Add confirmation pop-up! -->
+                <form action="{{ route('members.destroy', $member->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">DELETE</button>
+                </form>
+            </td>
         </tr>
         @endforeach
         <tr>
-            <td colspan="4"><a href="{{route('members.create')}}">Add new member</a></td>
+            <td colspan="5"><a href="{{route('members.create')}}">Add new member</a></td>
     </table>
         
 </body>
