@@ -39,6 +39,7 @@
         @endforeach
         <tr>
             <td colspan="5"><a href="{{route('members.create')}}">Add new member</a></td>
+        </tr>
     </table>
         
 </body>

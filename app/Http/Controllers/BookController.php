@@ -34,5 +34,25 @@ class BookController extends Controller
         return redirect()->route('books.index')->with('SUCCESS', 'Book is added.');
     }
 
-    // TODO: Add Update and Delete from CRUD
+    // Showing prepopulated form for editing existing data, equal to the form for the adding new data.
+    public function edit(Book $book)
+    {
+        return view('book.edit', compact('book'));
+    }
+
+    // Atfet edit we call this method
+    public function update(Request $request, Book $book)
+    {
+        $book->update($request->all());
+        
+        return redirect()->route('books.index');
+    }
+
+    // DELETE book
+    public function destroy(Book $book)
+    {
+        $book->delete();
+
+        return redirect()->route('books.index');
+    }
 }
