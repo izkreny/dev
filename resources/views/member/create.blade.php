@@ -8,7 +8,7 @@
 <body>
     <h1>Add new member</h1>
 
-    <form action="{{route('members.store')}}" method="POST">
+    <form action="{{ route('members.store') }}" method="POST">
         @csrf
         <label>Name</label><br>
         <input type="text" name="name"><br>

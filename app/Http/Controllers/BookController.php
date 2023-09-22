@@ -48,6 +48,11 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
+    public function confirmDelete(Book $book)
+    {
+        return view('book.confirm-delete', compact('book'));
+    }
+
     // DELETE book
     public function destroy(Book $book)
     {

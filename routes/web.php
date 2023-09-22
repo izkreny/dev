@@ -25,6 +25,4 @@ Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);
 Route::resource('borrows', BorrowController::class);
 
-/* Manual way
-Route::get('/members/{member}/edit', 'MemberController@edit')->name(members.edit);
-*/
+Route::get('/books/{book}/confirm-delete', [BookController::class, 'confirmDelete'])->name('books.confirm-delete');

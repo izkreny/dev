@@ -8,7 +8,7 @@
 <body>
     <h1>Edit {{ $book->title }} book</h1>
 
-    <form action="{{ route('books.update', $book->id)}}" method="POST">
+    <form action="{{ route('books.update', $book->id) }}" method="POST">
         @csrf
         @method('PUT')
         <label>Title</label><br>

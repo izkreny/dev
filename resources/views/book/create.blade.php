@@ -8,7 +8,7 @@
 <body>
     <h1>Add new book</h1>
 
-    <form action="{{route('books.store')}}" method="POST">
+    <form action="{{ route('books.store') }}" method="POST">
         @csrf
         <label>Title</label><br>
         <input type="text" name="title"><br>

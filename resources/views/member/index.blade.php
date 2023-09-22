@@ -10,7 +10,7 @@
 
     <table border="1">
         <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Edit</th>
@@ -38,7 +38,7 @@
         </tr>
         @endforeach
         <tr>
-            <td colspan="5"><a href="{{route('members.create')}}">Add new member</a></td>
+            <td colspan="5"><a href="{{ route('members.create') }}">Add new member</a></td>
         </tr>
     </table>
         

@@ -10,7 +10,7 @@
 
     <table border="1">
         <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Title</th>
             <th>Author</th>
             <th>Published</th>
@@ -20,9 +20,9 @@
         @foreach ($books as $book)
         <tr>
             <td>{{ $book->id }}</td> 
-            <td>{{ $book->title }}
-            <td>{{ $book->author }}
-            <td>{{ $book->published }}
+            <td>{{ $book->title }}</td> 
+            <td>{{ $book->author }}</td> 
+            <td>{{ $book->published }}</td> 
             <td>
                 <form action="{{ route('books.edit', $book->id) }}" method="GET">
                     @csrf
@@ -31,16 +31,15 @@
             </td>
             <td>
                 <!-- TODO: Add confirmation pop-up! -->
-                <form action="{{ route('books.destroy', $book->id) }}" method="POST">
+                <form action="{{ route('books.confirm-delete', $book->id) }}" method="GET">
                     @csrf
-                    @method('DELETE')
                     <button type="submit">DELETE</button>
                 </form>
             </td>
         </tr>
         @endforeach
         <tr>
-            <td colspan="6"><a href="{{route('books.create')}}">Add new book</a></td>
+            <td colspan="6"><a href="{{ route('books.create') }}">Add new book</a></td>
         </tr>
     </table>
 </body>
