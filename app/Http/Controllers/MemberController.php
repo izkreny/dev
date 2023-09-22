@@ -33,5 +33,25 @@ class MemberController extends Controller
         return redirect()->route('members.index')->with('SUCCESS', 'Member is added.');
     }
 
-    // TODO: Add Update and Delete from CRUD
+    // Showing prepopulated form for editing existing data, equal to the form for the adding new data.
+    public function edit(Member $member)
+    {
+        return view('member.edit', compact('member'));
+    }
+
+    // Atfet edit we call this method
+    public function update(Request $request, Member $member)
+    {
+        $member->update($request->all());
+        
+        return redirect()->route('members.index');
+    }
+
+    // DELETE MEMBER
+    public function destroy(Member $member)
+    {
+        $member->delete();
+
+        return redirect()->route('members.index');
+    }
 }

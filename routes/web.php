@@ -24,3 +24,7 @@ Route::get('/', function () {
 Route::resource('members', MemberController::class);
 Route::resource('books', BookController::class);
 Route::resource('borrows', BorrowController::class);
+
+/* Manual way
+Route::get('/members/{member}/edit', 'MemberController@edit')->name(members.edit);
+*/

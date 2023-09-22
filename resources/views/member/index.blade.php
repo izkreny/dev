@@ -8,12 +8,24 @@
 <body>
     <h1>Members</h1>
 
-    <ol>
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Action</th>
+        </tr>         
         @foreach ($members as $member)
-        <li>{{$member->name}} {{$member->surname}}</li>
+        <tr>
+            <td>{{ $member->id }}.</td>
+            <td> {{$member->name}}</td>
+            <td>{{$member->surname}}</td>
+            <td><a href="{{ route('members.edit', $member->id) }}">EDIT</a></td>
+        </tr>
         @endforeach
-    </ol> 
-
-    <a href="{{route('members.create')}}">Add new member</a>
+        <tr>
+            <td colspan="4"><a href="{{route('members.create')}}">Add new member</a></td>
+    </table>
+        
 </body>
 </html>
