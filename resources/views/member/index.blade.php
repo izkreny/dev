@@ -19,8 +19,8 @@
         @foreach ($members as $member)
         <tr>
             <td>{{ $member->id }}.</td>
-            <td> {{$member->name}}</td>
-            <td>{{$member->surname}}</td>
+            <td>{{ $member->name }}</td>
+            <td>{{ $member->surname }}</td>
             <td>
                 <form action="{{ route('members.edit', $member->id) }}" method="GET">
                     @csrf

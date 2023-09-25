@@ -8,15 +8,27 @@
 <body>
     <h1>Borrows</h1>
 
-    <ul>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Member</th>
+            <th>Book</th>
+            <th>Borrowed</th>
+            <th>Returned</th>
+        </tr>         
         @foreach ($borrows as $borrow)
-        <li>#{{$borrow->id}}
-            <br>Member ID: #{{$borrow->id_member}}
-            <br>Book ID: #{{$borrow->id_book}}
-            <br>Borrowed at {{$borrow->borrow_start_date}}</li>
+        <tr>
+            <td>{{ $borrow->id }}.</td>
+            <td>{{ $borrow->name }} {{ $borrow->surname }}</td>
+            <td>{{ $borrow->title }}</td>
+            <td>{{ $borrow->borrow_start_date }}</td>
+            <td>{{ $borrow->borrow_end_date }}</td>
+        </tr>
         @endforeach
-    </ul> 
+        <tr>
+            <td colspan="5"><a href="{{ route('borrows.create') }}">Borrow a book!</a></td>
+        </tr>
+    </table>
 
-    <a href="{{route('borrows.create')}}">Add new borrow</a>
 </body>
 </html>
