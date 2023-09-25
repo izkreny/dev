@@ -10,12 +10,22 @@
 
     <form action="{{ route('borrows.store') }}" method="POST">
         @csrf
-        <label>Member ID</label><br>
-        <input type="number" name="id_member"><br>
-        <label>Book ID</label><br>
-        <input type="number" name="id_book"><br>
-        <label>Borrow start date</label><br>
-        <input type="date" name="borrow_start_date"><br>
+        <label>Member: </label>
+        <select name="id_member">
+            <option value="">-- Select a member --</option>
+            @foreach ($members as $member)
+            <option value="{{ $member->id }}">{{ $member->name }} {{ $member->surname }}</option>
+            @endforeach
+        </select><br><br>
+        <label>Book: </label>
+        <select name="id_book">
+            <option value="">-- Select a book --</option>
+            @foreach ($books as $book)
+            <option value="{{ $book->id }}">{{ $book->title }}</option>
+            @endforeach
+        </select><br><br>
+        <label>Borrow from: </label>
+        <input type="date" name="borrow_start_date"><br><br>
         <button type="submit">BORROW</button>
     </form>
 
