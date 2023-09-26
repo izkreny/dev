@@ -48,8 +48,6 @@ Route::get('/profile/{id}', function($id) {
 // Generate followint URL: /profile/5
 $urlForUser5 = route('user.profile', ['id' => 5]);
 
-***/
-
 // Exercise #1
 Route::get('/', function() {
     return "Welcome to my BLOG!";
@@ -65,3 +63,7 @@ Route::get('/user/profile', function() {
     return "This is my user profile";
 })->middleware('check.logged.user');
 
+***/
+
+Route::get('/users', 'App\Http\Controllers\UsersController@index');
+Route::get('/user/create', 'UsersController@create');
