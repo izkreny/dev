@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\JoinClause;
-use App\Models\Book;
 
 class Borrow extends Model
 {
@@ -23,7 +20,7 @@ class Borrow extends Model
     {
         /*
         |------------------------------------------------------------------
-        | https://laravel.com/docs/10.x/queries#or-where-clauses
+        | https://laravel.com/docs/10.x/queries#raw-expressions
         |
         | SQL QUERY
         |------------------------------------------------------------------
@@ -40,24 +37,15 @@ class Borrow extends Model
         |   WHERE borrowed.id_book is null;
         |
         */
-        
-        /*$books = Book::select('books.id', 'books.title')->get();
-        return Borrow::select('borrows.id_book', 'borrows.borrow_end_date')
-                ->where('borrows.borrow_end_date', '=', null)
-                ->rightJoinSub($books, 'books', function (JoinClause $join) {
-                    $join->on('borrows.id_book', '=', 'books.id');
-                })
-                ->where('borrows.id_book', '=', null)
-                ->get();*/
-
-        return Borrow::rightJoin('books', 'borrows.id_book', '=', 'books.id')
-                    ->select('books.id', 'books.title',
-                        'borrows.borrow_start_date', 'borrows.borrow_end_date')
-                    ->where('borrows.borrow_start_date', '=', null)
-                    ->orWhere(function (Builder $query) {
-                        $query->where('borrows.borrow_start_date', '<>', null)
-                            ->where('borrows.borrow_end_date', '<>', null);
-                    })
-                    ->get();
+        return Borrow::select('books.id', 'books.title')
+                        ->from(Borrow::raw(
+                            '(SELECT *
+                            FROM borrows
+                            WHERE borrows.borrow_end_date is null)
+                            AS borrowed'
+                        ))
+                        ->rightJoin('books', 'borrowed.id_book', '=', 'books.id')
+                        ->where('borrowed.id_book', '=', null)
+                        ->get();
     }
 }
