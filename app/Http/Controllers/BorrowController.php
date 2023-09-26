@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\Borrow;
 use App\Models\Member;
 
@@ -41,35 +40,7 @@ class BorrowController extends Controller
 
     public function create()
     {        
-        /*
-        |------------------------------------------------------------------
-        | https://laravel.com/docs/10.x/queries#or-where-clauses
-        |
-        | SQL QUERY:
-        | TODO: Remove duplicated rows with the same books.id
-        |------------------------------------------------------------------
-        |
-        |   SELECT
-        |       books.id, books.title,
-        |       borrows.borrow_start_date, borrows.borrow_end_date
-        |   FROM borrows
-        |   RIGHT JOIN books
-        |       ON borrows.id_book = books.id
-        |   WHERE
-        |       (borrows.borrow_start_date is null)
-        |       OR
-        |       (borrows.borrow_start_date is not null
-        |           AND borrows.borrow_end_date is not null);
-        |
-        */
-        $books = Borrow::rightJoin('books', 'borrows.id_book', '=', 'books.id')
-                    ->select('books.id', 'books.title', 'borrows.borrow_start_date', 'borrows.borrow_end_date')
-                    ->where('borrows.borrow_start_date', '=', null)
-                    ->orWhere(function (Builder $query) {
-                        $query->where('borrows.borrow_start_date', '<>', null)
-                            ->where('borrows.borrow_end_date', '<>', null);
-                    })
-                    ->get();
+        $books = Borrow::availableBooks();
         $members = Member::all();
 
         return view('borrow.create', compact('members', 'books'));
