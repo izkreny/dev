@@ -16,7 +16,7 @@ class Borrow extends Model
         'borrow_end_date'
     ];
 
-    protected static function availableBooks()
+    public static function availableBooks()
     {
         /*
         |------------------------------------------------------------------
