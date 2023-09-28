@@ -75,3 +75,12 @@ Route::get('/users/{id}/edit', [UsersController::class, 'edit']);
 Route::put('/users/{id}', [UsersController::class, 'update']);
 Route::delete('/users/{id}', [UsersController::class, 'destroy']);
 
+// Middleware
+Route::get('/under18', function() {
+    return "Your are underage!";
+});
+
+Route::get('/welcome', function() {
+    return "Welcome!";
+})->middleware('agecheck');
+
