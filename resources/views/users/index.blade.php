@@ -10,13 +10,20 @@
 
     <ol>
         @foreach ($users as $user)
-        <li>#{{ $user['id'] }} -- {{ $user['name'] }} | 
-            <a href="/user/{{ $user['id'] }}/edit">EDIT</a>
-            <a href="/user/{{ $user['id'] }}/delete">DELETE</a>
+        <li>ID: {{ $user['id'] }} -- Name: {{ $user['name'] }} || 
+            <form action="/users/{{ $user['id'] }}/edit" method="GET">
+                @csrf
+                <button type="submit">EDIT</button>
+            </form>    
+            <form action="/users/{{ $user['id'] }}/destroy" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">DELETE</button>
+            </form>
         </li>
         @endforeach
     </ol>
 
-    <a href="">Create new user</a>
+    <a href="/users/create">Create new user</a>
 </body>
 </html>

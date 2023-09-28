@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,12 @@ Route::get('/user/profile', function() {
 
 ***/
 
-Route::get('/users', 'App\Http\Controllers\UsersController@index');
-Route::get('/user/create', 'UsersController@create');
+Route::get('/users', [UsersController::class, 'index']);
+Route::post('/users/create', [UsersController::class, 'create']);
+Route::post('/users', [UsersController::class, 'store']);
+Route::get('/users/{id}/edit', [UsersController::class, 'edit']);
+
+// Route::post('/user/{id}/update', [UsersController::class, 'update']);
+Route::put('/users/{id}', [UsersController::class, 'update']);
+Route::delete('/users/{id}', [UsersController::class, 'destroy']);
+

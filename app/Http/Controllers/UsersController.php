@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    private $users = [
+        ['id' => 1, 'name' => 'First user'],
+        ['id' => 2, 'name' => 'Second user']
+    ];
+    
     public function index()
     {
-        $users = [
-            ['id' => 1, 'name' => 'First'],
-            ['id' => 2, 'name' => 'Second']
-        ];
-
-        return view('users.index', compact('users'));
+        return view('users.index', ['users' => $this->users]);
     }
 
     public function create()
@@ -23,24 +23,42 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        return view('users.create');
+        $nextID = count($this->users) + 1;
+        $this->users[] = ['id' => $nextID, 'name' => $request->name];
+
+        return redirect('/users');
     }
 
     public function edit($id)
     {
-        // Simple example without database
-        $user = ['id' => $id, 'name' => 'Third'];
+        // https://www.php.net/manual/en/function.array-filter.php
+        $user = array_filter($this->users, function($user) use ($id) {
+            return $user['id'] === $id;
+        });
 
-        return view('users.edit', compact('user'));
+        // https://www.php.net/manual/en/function.array-shift
+        // https://www.php.net/manual/en/functions.anonymous.php
+        return view('users.edit', ['user' => array_shift($user)]);
     }
 
     public function update(Request $request, $id)
     {
-        return redirect('/');
+        foreach ($this->users as $user) {
+            if ($user['id'] === $id) {
+                $user['name'] = $request->name;
+                break;
+            }
+        }
+
+        return redirect('/users');
     }
 
     public function destroy($id)
     {
-        return redirect('/');
+        $this->users = array_filter($this->users, function($user) use ($id) {
+            return $user['id'] !== $id;
+        });
+
+        return redirect('/users');
     }
 }
