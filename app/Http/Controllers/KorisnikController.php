@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Korisnik;
 
 class KorisnikController extends Controller
@@ -15,7 +16,8 @@ class KorisnikController extends Controller
 
     public function register(Request $request)
     {
-        $validated = $request->validate(
+        // $request->validate(
+        $validator = Validator::make($request->all(), 
             [
                 'name' => 'required|string|max:200',
                 // unique -- chek inside the database
@@ -24,14 +26,23 @@ class KorisnikController extends Controller
                 'password' => 'required|string|min:8|max:100|confirmed'
             ]
         );
-        
-        Korisnik::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
 
-        return redirect()->route('home')->with('success', "Registration successful! :-)");
-        //return redirect()->back()->with('error', "There is some kind of error! :-/");
+        if ($validator->fails()) {
+            return redirect()->route('home')->with('error', "There is some kind of error! :-/");
+        }
+        
+        try {
+            $user = Korisnik::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+
+            auth()->login($user);
+
+            return redirect()->route('home')->with('success', "Registration successful! :-)");
+        } catch(\Exception $e) {
+            return redirect()->route('home')->with('error', "There is some kind of error! :-|");
+        }
     }
 }
