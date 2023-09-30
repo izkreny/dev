@@ -23,6 +23,7 @@
         <button type="submit">REGISTER</button>
     </form>
 
+    <!-- https://laravel.com/docs/10.x/validation#quick-displaying-the-validation-errors -->
     @if ($errors->any())
     <ul>
         @foreach ($errors->all() as $error)
