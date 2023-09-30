@@ -22,9 +22,5 @@
 
         <button type="submit">REGISTER</button>
     </form>
-
-    @if (session('success'))
-        <p style="color: red"><b>{{ session('success') }}</b></p>
-    @endif
 </body>
 </html>
