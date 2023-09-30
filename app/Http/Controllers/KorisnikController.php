@@ -15,7 +15,7 @@ class KorisnikController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate(
+        $validated = $request->validate(
             [
                 'name' => 'required|string|max:200',
                 // unique -- chek inside the database
@@ -23,7 +23,7 @@ class KorisnikController extends Controller
                 // confirmed -- ako lozinka iz forme odogovara onoj u bazi?!
                 'password' => 'required|string|min:8|max:100|confirmed'
             ]
-            );
+        );
         
         Korisnik::create([
             'name' => $request->name,
@@ -31,6 +31,7 @@ class KorisnikController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('home')->with('success', "Registration successful!");
+        return redirect()->route('home')->with('success', "Registration successful! :-)");
+        //return redirect()->back()->with('error', "There is some kind of error! :-/");
     }
 }

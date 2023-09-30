@@ -7,7 +7,7 @@
 </head>
 <body>
     @if (session('success'))
-        <h2 style="color: red">{{ session('success') }}</h2>
+        <h2 style="color: green">{{ session('success') }}</h2>
     @endif
 </body>
 </html>
