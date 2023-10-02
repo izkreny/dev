@@ -14,13 +14,17 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'password' => 'required|string|min:4|max:100'
+        ]);
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             // Uspješna prijava
-            return redirect()->route('home')->with('success', 'Uspješna prijava');
+            return redirect()->route('home')->with('success', 'Successful login!');
         }
 
-        return redirect()->route('login')->with('error', 'Pogrešno korisničko ime ili lozinka');
+        return redirect()->route('login')->with('error', 'Wrong email or password.');
     }
 }

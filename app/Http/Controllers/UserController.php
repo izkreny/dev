@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class UserController extends Controller
@@ -32,5 +31,12 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('login')->with('success', "Registration successful! :-)");
+    }
+
+    public function logout() {
+        // logout user
+        auth()->logout();
+        // redirect to homepage
+        return redirect()->route('login')->with('success', 'Successful logout.');
     }
 }

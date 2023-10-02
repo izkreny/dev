@@ -6,6 +6,13 @@
     <title>Login form</title>
 </head>
 <body>
+
+    @if (session('success'))
+        <h2 style="color: green">{{ session('success') }}</h2>
+    @elseif (session('error'))
+        <h2 style="color: red">{{ session('error') }}</h2>
+    @endif
+    
     <form action="{{ route('login') }}" method="POST">
         @csrf
         <label>Email:</label>
@@ -16,5 +23,15 @@
         <br>
         <button type="submit" value="Login">LOGIN</button>
     </form>
+
+    <!-- https://laravel.com/docs/10.x/validation#quick-displaying-the-validation-errors -->
+    @if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li style="color: red">{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
+
 </body>
 </html>

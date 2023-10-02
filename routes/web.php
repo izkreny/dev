@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('page4');
     Route::get('/home', function() {
         return view('home');
-    })->name('home');
+    })->name('home');   
 });
 
 Route::get('/', function() {
@@ -44,3 +44,5 @@ Route::post('/register', [UserController::class, 'register']);
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');

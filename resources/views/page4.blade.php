@@ -13,6 +13,7 @@
             <li><a href="{{ route('page2') }}">Page #2</a></li>
             <li><a href="{{ route('page3') }}">Page #3</a></li>
             <li><a href="{{ route('page4') }}">Page #4</a></li>
+            <li><a href="{{ route('logout') }}">LOGOUT</a></li>
         </ol>
     </nav>
 
