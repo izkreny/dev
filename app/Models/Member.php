@@ -9,6 +9,10 @@ class Member extends Model
 {
     use HasFactory;
 
+    // Define which base to use, or even table
+    protected $connection = 'mysql';
+    protected $table = 'members';
+    
     protected $fillable = [
         'name',
         'surname',
