@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Automatically creates all routes for CRUD operations
 Route::resource('members', MemberController::class);
