@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ Route::get('/', function () {
 
 // Automatically creates all routes for CRUD operations
 Route::resource('members', MemberController::class);
+Route::resource('books', BookController::class);
