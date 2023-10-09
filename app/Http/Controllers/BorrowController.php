@@ -54,7 +54,10 @@ class BorrowController extends Controller
      */
     public function show(Borrow $borrow)
     {
-        return view('borrows.show', compact($borrow));
+        $member = Member::find($borrow->id_member);
+        $book = Book::find($borrow->id_book);
+
+        return view('borrows.show', compact('borrow', 'member', 'book'));
     }
 
     /**
