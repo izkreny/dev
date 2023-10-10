@@ -31,6 +31,7 @@
         <br><br>
         <button type="submit">BORROW</button>
     </form>
-
+    <br>
+    <a href="{{ route('borrows.index') }}">Go back to the borrows list</a>
 </body>
 </html>

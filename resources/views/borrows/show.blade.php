@@ -8,9 +8,7 @@
 <body>
     <h2>"{{ $member->name }} {{ $member->surname }}" borrowed "{{ $book->title }}"</h2>
     <h3>From: {{ $borrow->borrow_start_date }}</h3>
-    @if ($borrow->borrow_end_date)
-        <h3>Returned: {{ $borrow->borrow_end_date }}</h3>
-    @endif
+    <h3>Returned: {{ $borrow->borrow_end_date ?? 'Not yet! 😊' }}</h3>
 
     <form action="{{ route('borrows.edit', $borrow->id) }}" method="GET">
         @csrf
