@@ -27,7 +27,7 @@ class LoginTest extends TestCase
         ]);
 
         // After login check page
-        $response->assertRedirect($uri = '/dashboard');
+        $response->assertRedirect('/dashboard');
         // Check if user is still authenticated
         $this->assertAuthenticatedAs($user);
     }
