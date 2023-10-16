@@ -30,6 +30,32 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="{{ route('dashboard') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('members.index') }}">
+                                Members
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('books.index') }}">
+                                Books
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('borrows.index') }}">
+                                Borrows
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
             </main>
         </div>
     </body>
