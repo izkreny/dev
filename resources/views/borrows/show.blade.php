@@ -15,10 +15,13 @@
         <button type="submit">EDIT</button>
     </form>
     <!-- TODO: Add confirmation pop-up! -->
-    <form action="{{ route('borrows.destroy', $borrow->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit">DELETE</button>
+    <form
+        action="{{ route('borrows.destroy', $borrow->id) }}"
+        method="POST"
+        onsubmit="return confirm('Are you sure?!');">
+            @csrf
+            @method('DELETE')
+            <button type="submit">DELETE</button>
     </form>
     <br>
     <a href="{{ route('borrows.index') }}">Go back to the borrows list</a>
